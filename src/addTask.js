@@ -1,4 +1,4 @@
-const {v4} =require('uuid')
+const {v4} = require('uuid')
 
 const AWS = require('aws-sdk')
 
@@ -7,7 +7,7 @@ const addTask = async (event) => {
   const dynamoDb = new AWS.DynamoDB.DocumentClient();
   const { title, description } = JSON.parse(event.body);
 
-  const createdAt = new Date();
+  const createdAt = new Date().toString();
 
   const id = v4();
 
@@ -27,14 +27,14 @@ const addTask = async (event) => {
       .promise();
 
     return {
-      status: 200,
+      statusCode: 200,
       body: JSON.stringify(newTask),
     };
   } catch (error) {
 
     // console.log(error)
     return {
-      status: 500,
+      statusCode: 500,
       body: JSON.stringify(error),
     };
   }

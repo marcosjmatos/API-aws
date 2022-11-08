@@ -13,7 +13,7 @@ const listTasks = async ()=> {
 
         return {
             status : 200,
-            body:{tasks}
+            body:tasks
         }
         
     } catch (error) {
